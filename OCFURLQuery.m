@@ -211,6 +211,11 @@ static NSString *_delimiter = @"&";
 		
 		NSString *keyPath = [assignment substringToIndex:equalsSignLocation];
 		NSString *value = [assignment substringFromIndex:equalsSignLocation+1];
+		value = [value stringByRemovingPercentEncoding];
+		if (value==nil) {
+			value = @"";
+		}
+
 		
 		[keyValuePairs setObject:value forURLQueryKeyPath:keyPath keyPrefix:keyPrefix keyPostfix:keyPostfix];
 		
